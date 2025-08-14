@@ -63,7 +63,7 @@ typedef __LL_DEFAULT_DATA_TYPE          ll_data_t;
 typedef __LL_DEFAULT_SIZE_TYPE          ll_size_t;
 typedef __LL_DEFAULT_RETURN_CODE_TYPE   ll_ret_code_t;
 
-/// @brief Defination of linked-list's node
+/// @brief Definition of linked-list's node
 typedef struct ll_node_t{
     ll_data_t data;
     ll_size_t index;
@@ -71,7 +71,7 @@ typedef struct ll_node_t{
     struct ll_node_t* prev_node_ptr;
 } ll_node_t;
 
-/// @brief Defination of linked-list type
+/// @brief Definition of linked-list type
 typedef struct linked_list_t{
     ll_node_t* root_node;  ;    // root node                (also head)
     ll_node_t* last_node_ptr;   // last pointed node        (also tail)
