@@ -55,7 +55,7 @@ typedef __LL_DEFAULT_SIZE_TYPE          ll_size_t;
 typedef __LL_DEFAULT_RETURN_CODE_TYPE   ll_ret_code_t;
 ```
 
-# Structure
+## Structures
 
 The linked-list is made from two general struct are `ll_node_t` and  `linked_list_t`; `linked_list_t` contain general information about the nodes insize the linked-list (head address, tail address, size). Meanwhile  ll_node_t contain information about neiborghs (prev-node address, next-node address) and its (data, index).
 
@@ -78,6 +78,41 @@ typedef struct linked_list_t{
 } linked_list_t;
 ```
 
+## Reading the source code
+
+The code in linked list.c is a bit confusing due to the use of macros to refer to properties (variables) in the struct.
+
+```C
+#define nd_next_ptr(node)   ((node)->next_node_ptr) 
+#define nd_prev_ptr(node)   ((node)->prev_node_ptr)
+#define nd_data(node)       ((node)->data)
+#define nd_index(node)      ((node)->index)
+
+#define ll_root(linked_list_p) ((linked_list_p)->root_node)
+#define ll_head(linked_list_p) ((linked_list_p)->root_node)
+#define ll_tail(linked_list_p) ((linked_list_p)->last_node_ptr)
+#define ll_size(linked_list_p) ((linked_list_p)->size)
+
+/// @brief Delete a node based on INDEX information, using macro
+ll_ret_code_t   ll_delete_node_index(   ll_size_t index){
+    WRITE_LOG("[LL-LOG] ll_delete_node_index(%d)", index);
+    ll_node_t* temp_node = ll_root(ll_ptr);
+    while( temp_node ){
+        if (nd_index(temp_node) == index){
+            ll_delete_node(temp_node);
+            return 0;
+        }else{
+            temp_node = nd_next_ptr(temp_node);
+        }
+    }
+    return -1;
+}
+
+/// @brief Delete a node based on INDEX information, normal
+
+
+
+```
 
 # Methods
 
@@ -100,3 +135,176 @@ typedef struct linked_list_t{
 | `ll_ret_code_t` | `ll_delete_node` | `ll_node_t* specified_node` | Deletes a node using its memory address. Returns a status code. |
 | `ll_ret_code_t` | `ll_delete_node_index` | `ll_size_t index` | Deletes a node using its index. Returns a status code. |
 | `void` | `log_all_nodes` | None | (Conditional) Prints the details of all nodes in the linked list to the console. This function is only available if the `LOG` and `WRITE_LOG` macros are defined. |
+
+
+# Compile and run
+
+```ZSH
+clear; 
+g++ -Iinclude test.c include/DS/linked_list.c -o test \
+&& valgrind --leak-check=full -s  ./test
+```
+
+# Log
+
+```LOG
+==26215== Memcheck, a memory error detector
+==26215== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==26215== Using Valgrind-3.25.1 and LibVEX; rerun with -h for copyright info
+==26215== Command: ./test
+==26215==
+----- Test LINKED-LIST program -----
+[LL-LOG] ll_init(10)
+[LL-LOG] ll_node_create((nil), (nil), 0, 0)
+[LL-LOG] ll_set_node(0x4e91520, (nil), (nil), 0, 0)
+[LL-LOG] ll_node_create(0x4e91520, (nil), 1, 0)
+[LL-LOG] ll_set_node(0x4e91580, 0x4e91520, (nil), 1, 0)
+[LL-LOG] ll_node_create(0x4e91580, (nil), 2, 0)
+[LL-LOG] ll_set_node(0x4e915e0, 0x4e91580, (nil), 2, 0)
+[LL-LOG] ll_node_create(0x4e915e0, (nil), 3, 0)
+[LL-LOG] ll_set_node(0x4e91640, 0x4e915e0, (nil), 3, 0)
+[LL-LOG] ll_node_create(0x4e91640, (nil), 4, 0)
+[LL-LOG] ll_set_node(0x4e916a0, 0x4e91640, (nil), 4, 0)
+[LL-LOG] ll_node_create(0x4e916a0, (nil), 5, 0)
+[LL-LOG] ll_set_node(0x4e91700, 0x4e916a0, (nil), 5, 0)
+[LL-LOG] ll_node_create(0x4e91700, (nil), 6, 0)
+[LL-LOG] ll_set_node(0x4e91760, 0x4e91700, (nil), 6, 0)
+[LL-LOG] ll_node_create(0x4e91760, (nil), 7, 0)
+[LL-LOG] ll_set_node(0x4e917c0, 0x4e91760, (nil), 7, 0)
+[LL-LOG] ll_node_create(0x4e917c0, (nil), 8, 0)
+[LL-LOG] ll_set_node(0x4e91820, 0x4e917c0, (nil), 8, 0)
+[LL-LOG] ll_node_create(0x4e91820, (nil), 9, 0)
+[LL-LOG] ll_set_node(0x4e91880, 0x4e91820, (nil), 9, 0)
+[LL-LOG] log_all_nodes()
+[LL-LOG] log_all_nodes() | (nil)<--0x4e91520[0|0]-->0x4e91580
+[LL-LOG] log_all_nodes() | 0x4e91520<--0x4e91580[1|0]-->0x4e915e0
+[LL-LOG] log_all_nodes() | 0x4e91580<--0x4e915e0[2|0]-->0x4e91640
+[LL-LOG] log_all_nodes() | 0x4e915e0<--0x4e91640[3|0]-->0x4e916a0
+[LL-LOG] log_all_nodes() | 0x4e91640<--0x4e916a0[4|0]-->0x4e91700
+[LL-LOG] log_all_nodes() | 0x4e916a0<--0x4e91700[5|0]-->0x4e91760
+[LL-LOG] log_all_nodes() | 0x4e91700<--0x4e91760[6|0]-->0x4e917c0
+[LL-LOG] log_all_nodes() | 0x4e91760<--0x4e917c0[7|0]-->0x4e91820
+[LL-LOG] log_all_nodes() | 0x4e917c0<--0x4e91820[8|0]-->0x4e91880
+[LL-LOG] log_all_nodes() | 0x4e91820<--0x4e91880[9|0]-->(nil)
+[LL-LOG] ll_delete_node_index(6)
+[LL-LOG] ll_delete_node(0x4e91760)
+[LL-LOG] ll_delete_node() | set-pointer: 0x4e91700-->0x4e917c0
+[LL-LOG] ll_delete_node() | set-pointer: 0x4e91700<--0x4e917c0
+[LL-LOG] ll_delete_node() | Update ll-size
+[LL-LOG] log_all_nodes()
+[LL-LOG] log_all_nodes() | (nil)<--0x4e91520[0|0]-->0x4e91580
+[LL-LOG] log_all_nodes() | 0x4e91520<--0x4e91580[1|0]-->0x4e915e0
+[LL-LOG] log_all_nodes() | 0x4e91580<--0x4e915e0[2|0]-->0x4e91640
+[LL-LOG] log_all_nodes() | 0x4e915e0<--0x4e91640[3|0]-->0x4e916a0
+[LL-LOG] log_all_nodes() | 0x4e91640<--0x4e916a0[4|0]-->0x4e91700
+[LL-LOG] log_all_nodes() | 0x4e916a0<--0x4e91700[5|0]-->0x4e917c0
+[LL-LOG] log_all_nodes() | 0x4e91700<--0x4e917c0[7|0]-->0x4e91820
+[LL-LOG] log_all_nodes() | 0x4e917c0<--0x4e91820[8|0]-->0x4e91880
+[LL-LOG] log_all_nodes() | 0x4e91820<--0x4e91880[9|0]-->(nil)
+[LL-LOG] ll_delete_node_index(9)
+[LL-LOG] ll_delete_node(0x4e91880)
+[LL-LOG] ll_pop_back()
+[LL-LOG] ll_pop_back() | To be del: 0x4e91880
+[LL-LOG] ll_pop_back() | ll_size=8
+[LL-LOG] log_all_nodes()
+[LL-LOG] log_all_nodes() | (nil)<--0x4e91520[0|0]-->0x4e91580
+[LL-LOG] log_all_nodes() | 0x4e91520<--0x4e91580[1|0]-->0x4e915e0
+[LL-LOG] log_all_nodes() | 0x4e91580<--0x4e915e0[2|0]-->0x4e91640
+[LL-LOG] log_all_nodes() | 0x4e915e0<--0x4e91640[3|0]-->0x4e916a0
+[LL-LOG] log_all_nodes() | 0x4e91640<--0x4e916a0[4|0]-->0x4e91700
+[LL-LOG] log_all_nodes() | 0x4e916a0<--0x4e91700[5|0]-->0x4e917c0
+[LL-LOG] log_all_nodes() | 0x4e91700<--0x4e917c0[7|0]-->0x4e91820
+[LL-LOG] log_all_nodes() | 0x4e917c0<--0x4e91820[8|0]-->(nil)
+[LL-LOG] ll_pop_back()
+[LL-LOG] ll_pop_back() | To be del: 0x4e91820
+[LL-LOG] ll_pop_back() | ll_size=7
+[LL-LOG] log_all_nodes()
+[LL-LOG] log_all_nodes() | (nil)<--0x4e91520[0|0]-->0x4e91580
+[LL-LOG] log_all_nodes() | 0x4e91520<--0x4e91580[1|0]-->0x4e915e0
+[LL-LOG] log_all_nodes() | 0x4e91580<--0x4e915e0[2|0]-->0x4e91640
+[LL-LOG] log_all_nodes() | 0x4e915e0<--0x4e91640[3|0]-->0x4e916a0
+[LL-LOG] log_all_nodes() | 0x4e91640<--0x4e916a0[4|0]-->0x4e91700
+[LL-LOG] log_all_nodes() | 0x4e916a0<--0x4e91700[5|0]-->0x4e917c0
+[LL-LOG] log_all_nodes() | 0x4e91700<--0x4e917c0[7|0]-->(nil)
+[LL-LOG] ll_push_back(172)
+[LL-LOG] ll_node_create(0x4e917c0, (nil), 8, 172)
+[LL-LOG] ll_set_node(0x4e918e0, 0x4e917c0, (nil), 8, 172)
+[LL-LOG] log_all_nodes()
+[LL-LOG] log_all_nodes() | (nil)<--0x4e91520[0|0]-->0x4e91580
+[LL-LOG] log_all_nodes() | 0x4e91520<--0x4e91580[1|0]-->0x4e915e0
+[LL-LOG] log_all_nodes() | 0x4e91580<--0x4e915e0[2|0]-->0x4e91640
+[LL-LOG] log_all_nodes() | 0x4e915e0<--0x4e91640[3|0]-->0x4e916a0
+[LL-LOG] log_all_nodes() | 0x4e91640<--0x4e916a0[4|0]-->0x4e91700
+[LL-LOG] log_all_nodes() | 0x4e916a0<--0x4e91700[5|0]-->0x4e917c0
+[LL-LOG] log_all_nodes() | 0x4e91700<--0x4e917c0[7|0]-->0x4e918e0
+[LL-LOG] log_all_nodes() | 0x4e917c0<--0x4e918e0[8|172]-->(nil)
+[LL-LOG] ll_delete_node_index(0)
+[LL-LOG] ll_delete_node(0x4e91520)
+[LL-LOG] ll_delete_node() | Update ll-size
+[LL-LOG] log_all_nodes()
+[LL-LOG] log_all_nodes() | (nil)<--0x4e91580[1|0]-->0x4e915e0
+[LL-LOG] log_all_nodes() | 0x4e91580<--0x4e915e0[2|0]-->0x4e91640
+[LL-LOG] log_all_nodes() | 0x4e915e0<--0x4e91640[3|0]-->0x4e916a0
+[LL-LOG] log_all_nodes() | 0x4e91640<--0x4e916a0[4|0]-->0x4e91700
+[LL-LOG] log_all_nodes() | 0x4e916a0<--0x4e91700[5|0]-->0x4e917c0
+[LL-LOG] log_all_nodes() | 0x4e91700<--0x4e917c0[7|0]-->0x4e918e0
+[LL-LOG] log_all_nodes() | 0x4e917c0<--0x4e918e0[8|172]-->(nil)
+[LL-LOG] ll_push_back(17)
+[LL-LOG] ll_node_create(0x4e918e0, (nil), 9, 17)
+[LL-LOG] ll_set_node(0x4e91940, 0x4e918e0, (nil), 9, 17)
+[LL-LOG] log_all_nodes()
+[LL-LOG] log_all_nodes() | (nil)<--0x4e91580[1|0]-->0x4e915e0
+[LL-LOG] log_all_nodes() | 0x4e91580<--0x4e915e0[2|0]-->0x4e91640
+[LL-LOG] log_all_nodes() | 0x4e915e0<--0x4e91640[3|0]-->0x4e916a0
+[LL-LOG] log_all_nodes() | 0x4e91640<--0x4e916a0[4|0]-->0x4e91700
+[LL-LOG] log_all_nodes() | 0x4e916a0<--0x4e91700[5|0]-->0x4e917c0
+[LL-LOG] log_all_nodes() | 0x4e91700<--0x4e917c0[7|0]-->0x4e918e0
+[LL-LOG] log_all_nodes() | 0x4e917c0<--0x4e918e0[8|172]-->0x4e91940
+[LL-LOG] log_all_nodes() | 0x4e918e0<--0x4e91940[9|17]-->(nil)
+[LL-LOG] ll_delete_node_index(15)
+[LL-LOG] log_all_nodes()
+[LL-LOG] log_all_nodes() | (nil)<--0x4e91580[1|0]-->0x4e915e0
+[LL-LOG] log_all_nodes() | 0x4e91580<--0x4e915e0[2|0]-->0x4e91640
+[LL-LOG] log_all_nodes() | 0x4e915e0<--0x4e91640[3|0]-->0x4e916a0
+[LL-LOG] log_all_nodes() | 0x4e91640<--0x4e916a0[4|0]-->0x4e91700
+[LL-LOG] log_all_nodes() | 0x4e916a0<--0x4e91700[5|0]-->0x4e917c0
+[LL-LOG] log_all_nodes() | 0x4e91700<--0x4e917c0[7|0]-->0x4e918e0
+[LL-LOG] log_all_nodes() | 0x4e917c0<--0x4e918e0[8|172]-->0x4e91940
+[LL-LOG] log_all_nodes() | 0x4e918e0<--0x4e91940[9|17]-->(nil)
+[LL-LOG] ll_destroy()
+[LL-LOG] ll_pop_back()
+[LL-LOG] ll_pop_back() | To be del: 0x4e91940
+[LL-LOG] ll_pop_back() | ll_size=7
+[LL-LOG] ll_pop_back()
+[LL-LOG] ll_pop_back() | To be del: 0x4e918e0
+[LL-LOG] ll_pop_back() | ll_size=6
+[LL-LOG] ll_pop_back()
+[LL-LOG] ll_pop_back() | To be del: 0x4e917c0
+[LL-LOG] ll_pop_back() | ll_size=5
+[LL-LOG] ll_pop_back()
+[LL-LOG] ll_pop_back() | To be del: 0x4e91700
+[LL-LOG] ll_pop_back() | ll_size=4
+[LL-LOG] ll_pop_back()
+[LL-LOG] ll_pop_back() | To be del: 0x4e916a0
+[LL-LOG] ll_pop_back() | ll_size=3
+[LL-LOG] ll_pop_back()
+[LL-LOG] ll_pop_back() | To be del: 0x4e91640
+[LL-LOG] ll_pop_back() | ll_size=2
+[LL-LOG] ll_pop_back()
+[LL-LOG] ll_pop_back() | To be del: 0x4e915e0
+[LL-LOG] ll_pop_back() | ll_size=1
+[LL-LOG] ll_pop_back()
+[LL-LOG] ll_pop_back() | To be del: 0x4e91580
+[LL-LOG] ll_pop_back() | 0x4e91580 is ROOT/HEAD node!
+[LL-LOG] ll_pop_back() | ll_size=0
+[LL-LOG] ll_pop_back()
+[LL-LOG] ll_destroy() | Deleted all nodes
+==26215==
+==26215== HEAP SUMMARY:
+==26215==     in use at exit: 0 bytes in 0 blocks
+==26215==   total heap usage: 15 allocs, 15 frees, 75,064 bytes allocated
+==26215==
+==26215== All heap blocks were freed -- no leaks are possible
+==26215==
+==26215== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+```

@@ -12,8 +12,8 @@
 // #define AUTO_UPDATE_NODE_INDEX 
 
 /// Un-comment two lines below enable LOG, and specify the actually log-function 
-// #define LOG
-// #define WRITE_LOG(fmt, ...) printf(fmt "\n", ##__VA_ARGS__)
+#define LOG
+#define WRITE_LOG(fmt, ...) printf(fmt "\n", ##__VA_ARGS__)
 
 /// Un-comment to enable defined macro warning
 /// #define EXISTED_MARCO_WARNING

@@ -38,7 +38,7 @@ linked_list_t* ll_ptr;
 #ifdef EXISTED_MARCO_WARNING
 #pragma message("<ll_size> was defined, becareful! The defined thing may not work as expected!")
 #endif
-#define ll_size(linked_list_p) linked_list_p->size
+#define ll_size(linked_list_p) ((linked_list_p)->size)
 #endif
 
 #ifndef nd_next_ptr
@@ -147,7 +147,7 @@ ll_node_t*      ll_push_back(           ll_data_t data){
         ll_tail(ll_ptr), 
         NULL, 
         nd_index(ll_tail(ll_ptr))+1, 
-        __LL_DEF_DVAL);
+        data);
     /// Assign address_of(tail) to new_node->prev_node_ptr
     ll_tail(ll_ptr) = nd_next_ptr(ll_tail(ll_ptr));
     /// Update size of ll
@@ -197,7 +197,7 @@ ll_ret_code_t   ll_pop_back(){
     if(__IS_NULL(ll_ptr) || __IS_NULL(ll_tail(ll_ptr))) return -1;
     /// Get deleting address (tail address)
     ll_node_t* to_be_deleted = ll_tail(ll_ptr);
-    WRITE_LOG("[LL-LOG] ll_pop_back() | Del: %p", to_be_deleted);
+    WRITE_LOG("[LL-LOG] ll_pop_back() | To be del: %p", to_be_deleted);
     if(__IS_NOT_NULL(nd_prev_ptr(to_be_deleted))){
         /// Update tail address
         ll_tail(ll_ptr) = nd_prev_ptr(to_be_deleted);
@@ -283,6 +283,7 @@ ll_ret_code_t   ll_delete_node(         ll_node_t* specified_node){
     /// Delete root/head
     if(ll_head(ll_ptr) == specified_node){
         ll_head(ll_ptr) = nd_next_ptr(specified_node);
+        nd_prev_ptr(ll_head(ll_ptr)) = NULL;
         #ifdef AUTO_UPDATE_NODE_INDEX
             ll_node_t* tmp_node = nd_next_ptr(ll_head(ll_ptr));
             while(__IS_NOT_NULL(tmp_node)){
@@ -293,7 +294,7 @@ ll_ret_code_t   ll_delete_node(         ll_node_t* specified_node){
     }else 
     /// Delete tail
     if(ll_tail(ll_ptr) == specified_node){
-        ll_pop_back();
+        return ll_pop_back();
     }
     /// Delete midle node
     else{
