@@ -1,0 +1,616 @@
+desc: (none)
+cmd: ./test_linked_list
+time_unit: i
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=2031546
+mem_heap_B=73728
+mem_heap_extra_B=8
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=2060209
+mem_heap_B=74920
+mem_heap_extra_B=128
+mem_stacks_B=0
+heap_tree=detailed
+n3: 74920 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 73728 0x491E451: ??? (in /usr/lib/libstdc++.so.6.0.33)
+  n1: 73728 0x4009F0D: call_init (dl-init.c:74)
+   n1: 73728 0x4009F0D: call_init (dl-init.c:26)
+    n1: 73728 0x4009FD3: _dl_init (dl-init.c:121)
+     n0: 73728 0x4020CEF: ??? (in /usr/lib/ld-linux-x86-64.so.2)
+ n1: 1024 0x4D03928: _IO_file_doallocate (filedoalloc.c:101)
+  n1: 1024 0x4D12638: _IO_doallocbuf (genops.c:373)
+   n1: 1024 0x4D12638: _IO_doallocbuf (genops.c:368)
+    n1: 1024 0x4D107C7: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:746)
+     n1: 1024 0x4D11286: _IO_new_file_xsputn (fileops.c:1245)
+      n1: 1024 0x4D11286: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1198)
+       n1: 1024 0x4D06184: puts (ioputs.c:40)
+        n0: 1024 0x4001AAC: main (in /home/fus/Documents/ds-c/linked_list/test_linked_list)
+ n0: 168 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=3
+#-----------
+time=2076033
+mem_heap_B=75016
+mem_heap_extra_B=192
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=4
+#-----------
+time=2107121
+mem_heap_B=74992
+mem_heap_extra_B=176
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=5
+#-----------
+time=2150692
+mem_heap_B=74968
+mem_heap_extra_B=160
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=6
+#-----------
+time=2172585
+mem_heap_B=74992
+mem_heap_extra_B=176
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=7
+#-----------
+time=2196323
+mem_heap_B=75016
+mem_heap_extra_B=192
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=8
+#-----------
+time=2225496
+mem_heap_B=75208
+mem_heap_extra_B=320
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=9
+#-----------
+time=2261308
+mem_heap_B=75424
+mem_heap_extra_B=464
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=10
+#-----------
+time=2304851
+mem_heap_B=75400
+mem_heap_extra_B=448
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=11
+#-----------
+time=2325907
+mem_heap_B=75424
+mem_heap_extra_B=464
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=12
+#-----------
+time=2351458
+mem_heap_B=75448
+mem_heap_extra_B=480
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=2397599
+mem_heap_B=75472
+mem_heap_extra_B=496
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=14
+#-----------
+time=2422176
+mem_heap_B=75592
+mem_heap_extra_B=576
+mem_stacks_B=0
+heap_tree=detailed
+n4: 75592 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 73728 0x491E451: ??? (in /usr/lib/libstdc++.so.6.0.33)
+  n1: 73728 0x4009F0D: call_init (dl-init.c:74)
+   n1: 73728 0x4009F0D: call_init (dl-init.c:26)
+    n1: 73728 0x4009FD3: _dl_init (dl-init.c:121)
+     n0: 73728 0x4020CEF: ??? (in /usr/lib/ld-linux-x86-64.so.2)
+ n1: 1024 0x4D03928: _IO_file_doallocate (filedoalloc.c:101)
+  n1: 1024 0x4D12638: _IO_doallocbuf (genops.c:373)
+   n1: 1024 0x4D12638: _IO_doallocbuf (genops.c:368)
+    n1: 1024 0x4D107C7: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:746)
+     n1: 1024 0x4D11286: _IO_new_file_xsputn (fileops.c:1245)
+      n1: 1024 0x4D11286: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1198)
+       n1: 1024 0x4D06184: puts (ioputs.c:40)
+        n0: 1024 0x4001AAC: main (in /home/fus/Documents/ds-c/linked_list/test_linked_list)
+ n1: 792 0x4001311: ll_node_create(linked_list_t*, ll_node_t*, ll_node_t*, int, unsigned char) (in /home/fus/Documents/ds-c/linked_list/test_linked_list)
+  n0: 792 in 3 places, all below massif's threshold (1.00%)
+ n0: 48 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=15
+#-----------
+time=2446753
+mem_heap_B=75712
+mem_heap_extra_B=656
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=16
+#-----------
+time=2471330
+mem_heap_B=75832
+mem_heap_extra_B=736
+mem_stacks_B=0
+heap_tree=detailed
+n4: 75832 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 73728 0x491E451: ??? (in /usr/lib/libstdc++.so.6.0.33)
+  n1: 73728 0x4009F0D: call_init (dl-init.c:74)
+   n1: 73728 0x4009F0D: call_init (dl-init.c:26)
+    n1: 73728 0x4009FD3: _dl_init (dl-init.c:121)
+     n0: 73728 0x4020CEF: ??? (in /usr/lib/ld-linux-x86-64.so.2)
+ n1: 1032 0x4001311: ll_node_create(linked_list_t*, ll_node_t*, ll_node_t*, int, unsigned char) (in /home/fus/Documents/ds-c/linked_list/test_linked_list)
+  n0: 1032 in 3 places, all below massif's threshold (1.00%)
+ n1: 1024 0x4D03928: _IO_file_doallocate (filedoalloc.c:101)
+  n1: 1024 0x4D12638: _IO_doallocbuf (genops.c:373)
+   n1: 1024 0x4D12638: _IO_doallocbuf (genops.c:368)
+    n1: 1024 0x4D107C7: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:746)
+     n1: 1024 0x4D11286: _IO_new_file_xsputn (fileops.c:1245)
+      n1: 1024 0x4D11286: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1198)
+       n1: 1024 0x4D06184: puts (ioputs.c:40)
+        n0: 1024 0x4001AAC: main (in /home/fus/Documents/ds-c/linked_list/test_linked_list)
+ n0: 48 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=17
+#-----------
+time=2495844
+mem_heap_B=75952
+mem_heap_extra_B=816
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=18
+#-----------
+time=2515496
+mem_heap_B=76048
+mem_heap_extra_B=880
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=19
+#-----------
+time=2540073
+mem_heap_B=76168
+mem_heap_extra_B=960
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=20
+#-----------
+time=2564650
+mem_heap_B=76288
+mem_heap_extra_B=1040
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=21
+#-----------
+time=2599029
+mem_heap_B=76456
+mem_heap_extra_B=1152
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=22
+#-----------
+time=2623606
+mem_heap_B=76576
+mem_heap_extra_B=1232
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=23
+#-----------
+time=2648183
+mem_heap_B=76696
+mem_heap_extra_B=1312
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=24
+#-----------
+time=2677637
+mem_heap_B=76840
+mem_heap_extra_B=1408
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=25
+#-----------
+time=2702151
+mem_heap_B=76960
+mem_heap_extra_B=1488
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=26
+#-----------
+time=2721803
+mem_heap_B=77056
+mem_heap_extra_B=1552
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=27
+#-----------
+time=2746380
+mem_heap_B=77176
+mem_heap_extra_B=1632
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=28
+#-----------
+time=2770957
+mem_heap_B=77296
+mem_heap_extra_B=1712
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=29
+#-----------
+time=2790609
+mem_heap_B=77392
+mem_heap_extra_B=1776
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=30
+#-----------
+time=2810331
+mem_heap_B=77488
+mem_heap_extra_B=1840
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=31
+#-----------
+time=2830095
+mem_heap_B=77584
+mem_heap_extra_B=1904
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=32
+#-----------
+time=2854812
+mem_heap_B=77704
+mem_heap_extra_B=1984
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=33
+#-----------
+time=2879466
+mem_heap_B=77824
+mem_heap_extra_B=2064
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=34
+#-----------
+time=2899230
+mem_heap_B=77920
+mem_heap_extra_B=2128
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=35
+#-----------
+time=2923947
+mem_heap_B=78040
+mem_heap_extra_B=2208
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=36
+#-----------
+time=2948664
+mem_heap_B=78160
+mem_heap_extra_B=2288
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=37
+#-----------
+time=2983239
+mem_heap_B=78328
+mem_heap_extra_B=2400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=38
+#-----------
+time=3007956
+mem_heap_B=78448
+mem_heap_extra_B=2480
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=39
+#-----------
+time=3022767
+mem_heap_B=78520
+mem_heap_extra_B=2528
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=40
+#-----------
+time=3052405
+mem_heap_B=78664
+mem_heap_extra_B=2624
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=41
+#-----------
+time=3078096
+mem_heap_B=78664
+mem_heap_extra_B=2624
+mem_stacks_B=0
+heap_tree=peak
+n4: 78664 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 73728 0x491E451: ??? (in /usr/lib/libstdc++.so.6.0.33)
+  n1: 73728 0x4009F0D: call_init (dl-init.c:74)
+   n1: 73728 0x4009F0D: call_init (dl-init.c:26)
+    n1: 73728 0x4009FD3: _dl_init (dl-init.c:121)
+     n0: 73728 0x4020CEF: ??? (in /usr/lib/ld-linux-x86-64.so.2)
+ n2: 3864 0x4001311: ll_node_create(linked_list_t*, ll_node_t*, ll_node_t*, int, unsigned char) (in /home/fus/Documents/ds-c/linked_list/test_linked_list)
+  n2: 3288 0x400139E: ll_push_back(linked_list_t*, unsigned char) (in /home/fus/Documents/ds-c/linked_list/test_linked_list)
+   n0: 3216 0x4001BED: main (in /home/fus/Documents/ds-c/linked_list/test_linked_list)
+   n0: 72 in 3 places, all below massif's threshold (1.00%)
+  n0: 576 in 2 places, all below massif's threshold (1.00%)
+ n1: 1024 0x4D03928: _IO_file_doallocate (filedoalloc.c:101)
+  n1: 1024 0x4D12638: _IO_doallocbuf (genops.c:373)
+   n1: 1024 0x4D12638: _IO_doallocbuf (genops.c:368)
+    n1: 1024 0x4D107C7: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:746)
+     n1: 1024 0x4D11286: _IO_new_file_xsputn (fileops.c:1245)
+      n1: 1024 0x4D11286: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1198)
+       n1: 1024 0x4D06184: puts (ioputs.c:40)
+        n0: 1024 0x4001AAC: main (in /home/fus/Documents/ds-c/linked_list/test_linked_list)
+ n0: 48 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=42
+#-----------
+time=3114869
+mem_heap_B=78256
+mem_heap_extra_B=2352
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=43
+#-----------
+time=3135668
+mem_heap_B=78040
+mem_heap_extra_B=2208
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=44
+#-----------
+time=3154156
+mem_heap_B=77848
+mem_heap_extra_B=2080
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=45
+#-----------
+time=3172644
+mem_heap_B=77656
+mem_heap_extra_B=1952
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=46
+#-----------
+time=3191132
+mem_heap_B=77464
+mem_heap_extra_B=1824
+mem_stacks_B=0
+heap_tree=detailed
+n4: 77464 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 73728 0x491E451: ??? (in /usr/lib/libstdc++.so.6.0.33)
+  n1: 73728 0x4009F0D: call_init (dl-init.c:74)
+   n1: 73728 0x4009F0D: call_init (dl-init.c:26)
+    n1: 73728 0x4009FD3: _dl_init (dl-init.c:121)
+     n0: 73728 0x4020CEF: ??? (in /usr/lib/ld-linux-x86-64.so.2)
+ n2: 2688 0x4001311: ll_node_create(linked_list_t*, ll_node_t*, ll_node_t*, int, unsigned char) (in /home/fus/Documents/ds-c/linked_list/test_linked_list)
+  n2: 2280 0x400139E: ll_push_back(linked_list_t*, unsigned char) (in /home/fus/Documents/ds-c/linked_list/test_linked_list)
+   n0: 2256 0x4001BED: main (in /home/fus/Documents/ds-c/linked_list/test_linked_list)
+   n0: 24 in 3 places, all below massif's threshold (1.00%)
+  n0: 408 in 2 places, all below massif's threshold (1.00%)
+ n1: 1024 0x4D03928: _IO_file_doallocate (filedoalloc.c:101)
+  n1: 1024 0x4D12638: _IO_doallocbuf (genops.c:373)
+   n1: 1024 0x4D12638: _IO_doallocbuf (genops.c:368)
+    n1: 1024 0x4D107C7: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:746)
+     n1: 1024 0x4D11286: _IO_new_file_xsputn (fileops.c:1245)
+      n1: 1024 0x4D11286: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1198)
+       n1: 1024 0x4D06184: puts (ioputs.c:40)
+        n0: 1024 0x4001AAC: main (in /home/fus/Documents/ds-c/linked_list/test_linked_list)
+ n0: 24 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=47
+#-----------
+time=3209620
+mem_heap_B=77272
+mem_heap_extra_B=1696
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=48
+#-----------
+time=3234957
+mem_heap_B=77008
+mem_heap_extra_B=1520
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=49
+#-----------
+time=3251036
+mem_heap_B=76840
+mem_heap_extra_B=1408
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=50
+#-----------
+time=3267115
+mem_heap_B=76672
+mem_heap_extra_B=1296
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=51
+#-----------
+time=3283194
+mem_heap_B=76504
+mem_heap_extra_B=1184
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=52
+#-----------
+time=3299273
+mem_heap_B=76336
+mem_heap_extra_B=1072
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=53
+#-----------
+time=3315352
+mem_heap_B=76168
+mem_heap_extra_B=960
+mem_stacks_B=0
+heap_tree=detailed
+n4: 76168 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 73728 0x491E451: ??? (in /usr/lib/libstdc++.so.6.0.33)
+  n1: 73728 0x4009F0D: call_init (dl-init.c:74)
+   n1: 73728 0x4009F0D: call_init (dl-init.c:26)
+    n1: 73728 0x4009FD3: _dl_init (dl-init.c:121)
+     n0: 73728 0x4020CEF: ??? (in /usr/lib/ld-linux-x86-64.so.2)
+ n2: 1392 0x4001311: ll_node_create(linked_list_t*, ll_node_t*, ll_node_t*, int, unsigned char) (in /home/fus/Documents/ds-c/linked_list/test_linked_list)
+  n2: 984 0x400139E: ll_push_back(linked_list_t*, unsigned char) (in /home/fus/Documents/ds-c/linked_list/test_linked_list)
+   n0: 960 0x4001BED: main (in /home/fus/Documents/ds-c/linked_list/test_linked_list)
+   n0: 24 in 3 places, all below massif's threshold (1.00%)
+  n0: 408 in 2 places, all below massif's threshold (1.00%)
+ n1: 1024 0x4D03928: _IO_file_doallocate (filedoalloc.c:101)
+  n1: 1024 0x4D12638: _IO_doallocbuf (genops.c:373)
+   n1: 1024 0x4D12638: _IO_doallocbuf (genops.c:368)
+    n1: 1024 0x4D107C7: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:746)
+     n1: 1024 0x4D11286: _IO_new_file_xsputn (fileops.c:1245)
+      n1: 1024 0x4D11286: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1198)
+       n1: 1024 0x4D06184: puts (ioputs.c:40)
+        n0: 1024 0x4001AAC: main (in /home/fus/Documents/ds-c/linked_list/test_linked_list)
+ n0: 24 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=54
+#-----------
+time=3331431
+mem_heap_B=76000
+mem_heap_extra_B=848
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=55
+#-----------
+time=3347510
+mem_heap_B=75832
+mem_heap_extra_B=736
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=56
+#-----------
+time=3363589
+mem_heap_B=75664
+mem_heap_extra_B=624
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=57
+#-----------
+time=3379668
+mem_heap_B=75496
+mem_heap_extra_B=512
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=58
+#-----------
+time=3395747
+mem_heap_B=75328
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=59
+#-----------
+time=3411826
+mem_heap_B=75160
+mem_heap_extra_B=288
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=60
+#-----------
+time=3427905
+mem_heap_B=74992
+mem_heap_extra_B=176
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=61
+#-----------
+time=3443872
+mem_heap_B=74824
+mem_heap_extra_B=64
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=62
+#-----------
+time=3465170
+mem_heap_B=1024
+mem_heap_extra_B=8
+mem_stacks_B=0
+heap_tree=empty

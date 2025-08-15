@@ -83,10 +83,10 @@ typedef struct linked_list_t{
 The code in linked list.c is a bit confusing due to the use of macros to refer to properties (variables) in the struct.
 
 ```C
-#define nd_next_ptr(node)   ((node)->next_node_ptr) 
-#define nd_prev_ptr(node)   ((node)->prev_node_ptr)
-#define nd_data(node)       ((node)->data)
-#define nd_index(node)      ((node)->index)
+#define ll_nd_next(node)   ((node)->next_node_ptr) 
+#define ll_nd_prev(node)   ((node)->prev_node_ptr)
+#define ll_nd_data(node)       ((node)->data)
+#define ll_nd_index(node)      ((node)->index)
 
 #define ll_root(linked_list_p) ((linked_list_p)->root_node)
 #define ll_head(linked_list_p) ((linked_list_p)->root_node)
@@ -98,11 +98,11 @@ ll_ret_code_t   ll_delete_node_index(   ll_size_t index){
     WRITE_LOG("[LL-LOG] ll_delete_node_index(%d)", index);
     ll_node_t* temp_node = ll_root(ll_ptr);
     while( temp_node ){
-        if (nd_index(temp_node) == index){
+        if (ll_nd_index(temp_node) == index){
             ll_delete_node(temp_node);
             return 0;
         }else{
-            temp_node = nd_next_ptr(temp_node);
+            temp_node = ll_nd_next(temp_node);
         }
     }
     return -1;
@@ -139,10 +139,17 @@ ll_ret_code_t   ll_delete_node_index(   ll_size_t index){
 
 # Compile and run
 
+You need compile .c file in the library before main.c file, if the order is inverted, the linker can not find where defined of a function or can not find symbol. If you had modified the source, but get error while compiling, may be the `include-path` is missing, you can specify it via `-I` flag (E.g: `-I include`).
+
+
 ```ZSH
 clear; 
-g++ -Iinclude test.c include/linked_list/linked_list.c -o test \
-&& valgrind --leak-check=full -s  ./test
+g++ \
+-I include \
+linked_list.c \
+test_linked_list.c \
+-o test_linked_list \
+&& valgrind --leak-check=full -s ./test_linked_list
 ```
 
 # Log
