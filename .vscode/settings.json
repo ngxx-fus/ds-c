@@ -1,5 +1,7 @@
 {
     "files.associations": {
+        "*.c": "c",
+        "*.cpp": "cpp",
         "linked_list.h": "c",
         "cstdint": "c",
         "array": "c",
@@ -16,6 +18,7 @@
         "stdint.h": "c",
         "stdlib.h": "c",
         "format": "c",
-        "initializer_list": "c"
+        "initializer_list": "c",
+        "stdio.h": "c"
     }
 }

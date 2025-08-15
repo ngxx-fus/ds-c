@@ -141,7 +141,7 @@ ll_ret_code_t   ll_delete_node_index(   ll_size_t index){
 
 ```ZSH
 clear; 
-g++ -Iinclude test.c include/DS/linked_list.c -o test \
+g++ -Iinclude test.c include/linked_list/linked_list.c -o test \
 && valgrind --leak-check=full -s  ./test
 ```
 

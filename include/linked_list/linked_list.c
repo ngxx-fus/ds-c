@@ -3,7 +3,7 @@
 
 
 /// @brief 
-linked_list_t* ll_ptr;
+// linked_list_t* ll_ptr;
 
 #ifndef rep
 #ifdef EXISTED_MARCO_WARNING
@@ -83,35 +83,40 @@ linked_list_t* ll_ptr;
 #define __IS_NOT_NULL(__PTR) (__PTR != NULL)
 #endif 
 
-ll_node_t*      ll_set_prev_node_addr(  ll_node_t* specified_node, 
+ll_node_t*      ll_set_prev_node_addr(  linked_list_t* ll_ptr,
+                                        ll_node_t* specified_node, 
                                         ll_node_t* prev_node_ptr){
     WRITE_LOG("[LL-LOG] ll_set_prev_node_addr");
     nd_prev_ptr(specified_node) = prev_node_ptr;
     return specified_node;
 }
 
-ll_node_t*      ll_set_next_node_addr(  ll_node_t* specified_node,
+ll_node_t*      ll_set_next_node_addr(  linked_list_t* ll_ptr,
+                                        ll_node_t* specified_node,
                                         ll_node_t* next_node_ptr){
     WRITE_LOG("[LL-LOG] ll_set_next_node_addr");
     nd_next_ptr(specified_node) = next_node_ptr;
     return specified_node;
 }
 
-ll_node_t*      ll_set_data_node(       ll_node_t* specified_node, 
+ll_node_t*      ll_set_data_node(       linked_list_t* ll_ptr,
+                                        ll_node_t* specified_node, 
                                         ll_data_t data){
     WRITE_LOG("[LL-LOG] ll_set_data_node");
     nd_data(specified_node) = data;
     return specified_node;
 }
 
-ll_node_t*      ll_set_index_node(      ll_node_t* specified_node,
+ll_node_t*      ll_set_index_node(      linked_list_t* ll_ptr,
+                                        ll_node_t* specified_node,
                                         ll_size_t index){
     WRITE_LOG("[LL-LOG] ll_set_index_node");
     nd_index(specified_node) = index;
     return specified_node;
 }
 
-ll_node_t*      ll_set_node(            ll_node_t* specified_node, 
+ll_node_t*      ll_set_node(            linked_list_t* ll_ptr,
+                                        ll_node_t* specified_node, 
                                         ll_node_t* prev_node, 
                                         ll_node_t* next_node, 
                                         ll_size_t index, 
@@ -125,13 +130,15 @@ ll_node_t*      ll_set_node(            ll_node_t* specified_node,
     return specified_node;
 }
 
-ll_node_t*      ll_node_create(         ll_node_t* prev_node,
+ll_node_t*      ll_node_create(         linked_list_t* ll_ptr,
+                                        ll_node_t* prev_node,
                                         ll_node_t* next_node,
                                         ll_size_t index,
                                         ll_data_t data){
     WRITE_LOG("[LL-LOG] ll_node_create(%p, %p, %d, %d)", prev_node, 
                                                 next_node, index, data);
     return ll_set_node(
+        ll_ptr,
         (ll_node_t*) malloc(sizeof(ll_node_t)),
         prev_node,
         next_node,
@@ -140,10 +147,12 @@ ll_node_t*      ll_node_create(         ll_node_t* prev_node,
     );
 }
 
-ll_node_t*      ll_push_back(           ll_data_t data){
+ll_node_t*      ll_push_back(           linked_list_t* ll_ptr, 
+                                        ll_data_t data){
     WRITE_LOG("[LL-LOG] ll_push_back(%u)", data);
     /// Create new node, then assign address_of(new_node) to tail->next_node_ptr
     nd_next_ptr(ll_tail(ll_ptr))=ll_node_create(
+        ll_ptr,
         ll_tail(ll_ptr), 
         NULL, 
         nd_index(ll_tail(ll_ptr))+1, 
@@ -155,16 +164,17 @@ ll_node_t*      ll_push_back(           ll_data_t data){
     return ll_tail(ll_ptr);
 }
 
-void            ll_init(                ll_size_t ll_size_init){
+linked_list_t*  ll_init(                ll_size_t ll_size_init){
     WRITE_LOG("[LL-LOG] ll_init(%d)", ll_size_init);
     /// Size error
     if (ll_size_init < 1) 
-        return;
-    ll_ptr =  (linked_list_t*) malloc(sizeof(linked_list_t));
+        return NULL;
+    linked_list_t* ll_ptr =  (linked_list_t*) malloc(sizeof(linked_list_t));
     ll_ptr->size = ll_size_init;
     /// Failed to allocate
-    if(!ll_ptr) return;  
+    if(!ll_ptr) return NULL;  
     ll_tail(ll_ptr) = ll_head(ll_ptr) = ll_node_create(
+        ll_ptr,
         NULL, 
         NULL, 
         __LL_DEF_IVAL, 
@@ -173,6 +183,7 @@ void            ll_init(                ll_size_t ll_size_init){
     rep(ll_size_t, i, 1, ll_ptr->size){
         // WRITE_LOG("[LL-LOG] Create node [%d], then assign address_of(new_node) to tail->next_node_ptr", nd_index(ll_tail(ll_ptr))+1);
         nd_next_ptr(ll_tail(ll_ptr))=ll_node_create(
+            ll_ptr,
             ll_tail(ll_ptr), 
             NULL, 
             nd_index(ll_tail(ll_ptr))+1, 
@@ -180,10 +191,10 @@ void            ll_init(                ll_size_t ll_size_init){
         // WRITE_LOG("[LL-LOG] Assign address_of(tail) to new_node->prev_node_ptr");
         ll_tail(ll_ptr) = nd_next_ptr(ll_tail(ll_ptr));
     }
+    return ll_ptr;
 }
 
-
-ll_ret_code_t   ll_node_delete(         ll_node_t* specified_node){
+ll_ret_code_t   ll_node_delete(         linked_list_t* ll_ptr, ll_node_t* specified_node){
     WRITE_LOG("[LL-LOG] ll_node_delete(%p)", specified_node);
     if(__IS_NULL(ll_ptr))
         return -1;
@@ -192,7 +203,7 @@ ll_ret_code_t   ll_node_delete(         ll_node_t* specified_node){
     return 0;
 }
 
-ll_ret_code_t   ll_pop_back(){
+ll_ret_code_t   ll_pop_back(            linked_list_t* ll_ptr){
     WRITE_LOG("[LL-LOG] ll_pop_back()");
     if(__IS_NULL(ll_ptr) || __IS_NULL(ll_tail(ll_ptr))) return -1;
     /// Get deleting address (tail address)
@@ -215,12 +226,12 @@ ll_ret_code_t   ll_pop_back(){
     return 0;
 }
 
-ll_ret_code_t   ll_destroy(){
+ll_ret_code_t   ll_destroy(             linked_list_t* ll_ptr){
     WRITE_LOG("[LL-LOG] ll_destroy()");
     if(__IS_NULL(ll_ptr)) return -1;
     ll_ret_code_t ret;
     while(1){
-        ret = ll_pop_back();
+        ret = ll_pop_back(ll_ptr);
         if(ret != (ll_ret_code_t)(-1)){
             continue;
         }else{
@@ -238,7 +249,7 @@ ll_ret_code_t   ll_destroy(){
     return 0;
 }
 
-ll_node_t*      ll_node_at(             ll_size_t index){
+ll_node_t*      ll_node_at(             linked_list_t* ll_ptr, ll_size_t index){
     WRITE_LOG("[LL-LOG] ll_node_at(%d)", index);
     /// Search from root
     ll_node_t* temp_node = ll_root(ll_ptr);
@@ -251,7 +262,7 @@ ll_node_t*      ll_node_at(             ll_size_t index){
     return NULL;
 }
 
-ll_data_t       ll_data_at(              ll_size_t index){
+ll_data_t       ll_data_at(              linked_list_t* ll_ptr, ll_size_t index){
     WRITE_LOG("[LL-LOG] ll_data_at(%d, index)");
     /// Search from root
     ll_node_t* temp_node = ll_root(ll_ptr);
@@ -264,7 +275,7 @@ ll_data_t       ll_data_at(              ll_size_t index){
     return -1;
 }
 
-ll_size_t       ll_index_at(            ll_node_t* specifed_node){
+ll_size_t       ll_index_at(            linked_list_t* ll_ptr, ll_node_t* specifed_node){
     WRITE_LOG("[LL-LOG] ll_index_at(%p)", specifed_node);
     /// Search from root
     ll_node_t* temp_node = ll_root(ll_ptr);
@@ -277,7 +288,7 @@ ll_size_t       ll_index_at(            ll_node_t* specifed_node){
     return -1;
 }
 
-ll_ret_code_t   ll_delete_node(         ll_node_t* specified_node){
+ll_ret_code_t   ll_delete_node(         linked_list_t* ll_ptr, ll_node_t* specified_node){
     WRITE_LOG("[LL-LOG] ll_delete_node(%p)", specified_node);
     if(__IS_NULL(specified_node)) return -1;
     /// Delete root/head
@@ -294,7 +305,7 @@ ll_ret_code_t   ll_delete_node(         ll_node_t* specified_node){
     }else 
     /// Delete tail
     if(ll_tail(ll_ptr) == specified_node){
-        return ll_pop_back();
+        return ll_pop_back(ll_ptr);
     }
     /// Delete midle node
     else{
@@ -321,12 +332,12 @@ ll_ret_code_t   ll_delete_node(         ll_node_t* specified_node){
     return 0;
 }
 
-ll_ret_code_t   ll_delete_node_index(   ll_size_t index){
+ll_ret_code_t   ll_delete_node_index(   linked_list_t* ll_ptr, ll_size_t index){
     WRITE_LOG("[LL-LOG] ll_delete_node_index(%d)", index);
     ll_node_t* temp_node = ll_root(ll_ptr);
     while( temp_node ){
         if (nd_index(temp_node) == index){
-            ll_delete_node(temp_node);
+            ll_delete_node(ll_ptr, temp_node);
             return 0;
         }else{
             temp_node = nd_next_ptr(temp_node);
@@ -336,7 +347,7 @@ ll_ret_code_t   ll_delete_node_index(   ll_size_t index){
 }
 
 #if defined(LOG) && defined(WRITE_LOG)
-void            log_all_nodes(){
+void            log_all_nodes(linked_list_t* ll_ptr){
     WRITE_LOG("[LL-LOG] log_all_nodes()");
     ll_node_t* tmp_node = ll_head(ll_ptr);
     while(__IS_NOT_NULL(tmp_node)){

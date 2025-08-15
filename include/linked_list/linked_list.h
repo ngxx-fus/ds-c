@@ -9,7 +9,7 @@
 /// If you uncomment the line below, meaning anable 
 /// Auto update index after remove a node,
 /// It may be cause increasing of running time
-// #define AUTO_UPDATE_NODE_INDEX 
+#define AUTO_UPDATE_NODE_INDEX 
 
 /// Un-comment two lines below enable LOG, and specify the actually log-function 
 #define LOG
@@ -78,33 +78,37 @@ typedef struct linked_list_t{
     ll_size_t size;     // size of ll 
 } linked_list_t;
 
-/// @brief Linked-list object
-extern linked_list_t*    ll_ptr;
+// /// @brief Linked-list object
+// extern linked_list_t*    ll_ptr;
 
 /// @brief Set previous node address of specified node
 /// @param specified_node 
 /// @param prev_node 
 /// @return 
-ll_node_t*      ll_set_prev_node_addr(  ll_node_t* specified_node, 
+ll_node_t*      ll_set_prev_node_addr(  linked_list_t* ll_ptr, 
+                                        ll_node_t* specified_node, 
                                         ll_node_t* prev_node);
 
 /// @brief Set next node address of specified node
 /// @param specified_node 
 /// @param next_node 
 /// @return 
-ll_node_t*      ll_set_next_node_addr(  ll_node_t* specified_node,
+ll_node_t*      ll_set_next_node_addr(  linked_list_t* ll_ptr, 
+                                        ll_node_t* specified_node,
                                         ll_node_t* next_node);
 
 /// @brief Set data node of specified node
 /// @param specified_node 
 /// @return 
-ll_node_t*      ll_set_data_node(       ll_node_t* specified_node, 
+ll_node_t*      ll_set_data_node(       linked_list_t* ll_ptr, 
+                                        ll_node_t* specified_node, 
                                         ll_data_t data);
 
 /// @brief Set index node of specified node
 /// @param specified_node 
 /// @return 
-ll_node_t*      ll_set_index_node(      ll_node_t* specified_node,
+ll_node_t*      ll_set_index_node(      linked_list_t* ll_ptr, 
+                                        ll_node_t* specified_node,
                                         ll_size_t index);
 
 /// @brief Set data of specied node
@@ -114,7 +118,8 @@ ll_node_t*      ll_set_index_node(      ll_node_t* specified_node,
 /// @param index 
 /// @param data 
 /// @return specified_node (same as input)
-ll_node_t*      ll_set_node(            ll_node_t* specified_node, 
+ll_node_t*      ll_set_node(            linked_list_t* ll_ptr, 
+                                        ll_node_t* specified_node, 
                                         ll_node_t* prev, 
                                         ll_node_t* next, 
                                         ll_size_t index, 
@@ -126,7 +131,8 @@ ll_node_t*      ll_set_node(            ll_node_t* specified_node,
 /// @param index 
 /// @param data 
 /// @return Address of new linked-list's node
-ll_node_t*      ll_node_create(         ll_node_t* prev_node,
+ll_node_t*      ll_node_create(         linked_list_t* ll_ptr, 
+                                        ll_node_t* prev_node,
                                         ll_node_t* next_node,
                                         ll_size_t index,
                                         ll_data_t data);
@@ -134,36 +140,41 @@ ll_node_t*      ll_node_create(         ll_node_t* prev_node,
 /// @brief Add new node (<size+1>-th node) to linked-list
 /// @param data 
 /// @return Address of new node (tail)
-ll_node_t*      ll_push_back(           ll_data_t data);
+ll_node_t*      ll_push_back(           linked_list_t* ll_ptr, 
+                                        ll_data_t data);
 
 /// @brief Initialize linked-list
 /// @param ll_size_init 
-void            ll_init(                ll_size_t ll_size_init);
+linked_list_t*  ll_init(                ll_size_t ll_size_init);
 
 /// @brief Delete specified node
 /// @param specified_node 
 /// @return 0 - success | (-1) - failed (-1 in unsiged may be 1s' number)
-ll_ret_code_t   ll_node_delete(         ll_node_t* specified_node);
+ll_ret_code_t   ll_node_delete(         linked_list_t* ll_ptr, 
+                                        ll_node_t* specified_node);
 
 /// @brief Remove last node
 /// @return 0 - success | (-1)
-ll_ret_code_t   ll_pop_back();
+ll_ret_code_t   ll_pop_back(            linked_list_t* ll_ptr);
 
 /// @brief Remove all nodes in the linked-list
-ll_ret_code_t   ll_destroy();
+ll_ret_code_t   ll_destroy(             linked_list_t* ll_ptr);
 
 /// @brief Get node at provided index
 /// @param index 
 /// @return NULL - not found | Address of matched index node
-ll_node_t*      ll_node_at(             ll_size_t index);
+ll_node_t*      ll_node_at(             linked_list_t* ll_ptr, 
+                                        ll_size_t index);
 
 /// @brief Get data bv index
 /// @return data, if failed - return (-1)
-ll_data_t       ll_data_at(             ll_size_t index);
+ll_data_t       ll_data_at(             linked_list_t* ll_ptr, 
+                                        ll_size_t index);
 
 /// @brief Get index of specified node
 /// @param specifed_node 
-ll_size_t       ll_index_at(            ll_node_t* specifed_node);
+ll_size_t       ll_index_at(            linked_list_t* ll_ptr, 
+                                        ll_node_t* specifed_node);
 
 // ll_ret_code_t   ll_shift_right();
 
@@ -172,16 +183,17 @@ ll_size_t       ll_index_at(            ll_node_t* specifed_node);
 /// @brief Delete node with provided address
 /// @param specified_node
 /// @return Status of operation
-ll_ret_code_t   ll_delete_node(         ll_node_t* specified_node);
+ll_ret_code_t   ll_delete_node(         linked_list_t* ll_ptr, 
+                                        ll_node_t* specified_node);
 
 /// @brief Delete node with provided index
 /// @param index
 /// @return Status of operation
-ll_ret_code_t   ll_delete_node_index(   ll_size_t index);
-
+ll_ret_code_t   ll_delete_node_index(   linked_list_t* ll_ptr, 
+                                        ll_size_t index);
 
 #if defined(LOG) && defined(WRITE_LOG)
-void            log_all_nodes();
+void            log_all_nodes(          linked_list_t* ll_ptr);
 #endif
 
 #endif
